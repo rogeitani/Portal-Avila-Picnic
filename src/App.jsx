@@ -3,6 +3,7 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
 import Services from './components/Services'
+import ColorPalette from './components/ColorPalette'
 import AvilaKits from './components/AvilaKits'
 import AboutUs from './components/AboutUs'
 import ContactForm from './components/ContactForm'
@@ -19,6 +20,7 @@ function App() {
           <Hero />
           <HowItWorks />
           <Services />
+          <ColorPalette />
           <AvilaKits />
           <AboutUs />
           <ContactForm />

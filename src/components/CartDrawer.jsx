@@ -9,10 +9,10 @@ export default function CartDrawer() {
     let message = "¡Hola! Quisiera realizar un pedido de Ávila Kits:%0A%0A";
     
     cart.forEach(item => {
-      message += `• *${item.name}* (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}%0A`;
+      message += `• *${item.name}* (x${item.quantity}) - ${(item.price * item.quantity).toFixed(2)}€%0A`;
     });
     
-    message += `%0A*Total: $${cartTotal.toFixed(2)}*%0A%0A¿Podrían confirmarme disponibilidad?`;
+    message += `%0A*Total: ${cartTotal.toFixed(2)}€*%0A%0A¿Podrían confirmarme disponibilidad?`;
     
     window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
   };
@@ -79,7 +79,7 @@ export default function CartDrawer() {
                         </svg>
                       </button>
                     </div>
-                    <p className="text-accent font-bold text-sm mb-4">${item.price.toFixed(2)}</p>
+                    <p className="text-accent font-bold text-sm mb-4">{item.price.toFixed(2)}€</p>
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center border border-primary/10 rounded-full px-3 py-1">
@@ -98,7 +98,7 @@ export default function CartDrawer() {
                         </button>
                       </div>
                       <span className="text-xs font-light text-primary/40 uppercase tracking-widest">
-                        Subtotal: ${(item.price * item.quantity).toFixed(2)}
+                        Subtotal: {(item.price * item.quantity).toFixed(2)}€
                       </span>
                     </div>
                   </div>
@@ -112,7 +112,7 @@ export default function CartDrawer() {
           <div className="p-8 border-t border-primary/5 space-y-6">
             <div className="flex justify-between items-end">
               <span className="text-xs uppercase tracking-widest text-primary/40 font-bold">Inversión Total</span>
-              <span className="text-4xl font-serif text-primary tracking-tighter">${cartTotal.toFixed(2)}</span>
+              <span className="text-4xl font-serif text-primary tracking-tighter">{cartTotal.toFixed(2)}€</span>
             </div>
             
             <button 

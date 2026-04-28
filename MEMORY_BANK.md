@@ -60,3 +60,9 @@ La arquitectura de información actual es una landing page de una sola página (
     *   `CartDrawer`: Panel lateral estilo Apple para revisión de pedidos.
     *   Checkout: Integración con WhatsApp para envío de pedidos estructurados.
 *   **Ajustes SEO**: Eliminación de términos genéricos como "romántico" en favor de un lenguaje más curado y local.
+
+### [2026-04-28] - Detalles de Picnic, Precios en Euros y Paletas de Colores
+*   **Precios**: Actualizados a Euros (€) con nuevos valores (Paint: 35€, Lovely: 40€, Full Paint: 45€).
+*   **Detalles de Servicios**: Implementado `PicnicModal` para mostrar el inventario detallado de cada tipo de picnic (Mesas, alfombras, flores, etc.).
+*   **Sección de Colores**: Nuevo componente `ColorPalette` que permite visualizar las opciones de personalización (Azules, Rosados, Beige, etc.) con scroll horizontal.
+*   **Publicación**: Primera versión desplegada con éxito en Vercel.

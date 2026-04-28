@@ -7,7 +7,7 @@ const KITS = [
   {
     id: 'paint-kit',
     name: 'Paint Kit',
-    price: 45.00,
+    price: 35.00,
     description: 'El lienzo perfecto para tu creatividad. Incluye caballete, pinturas y todos los esenciales.',
     image: paintKit,
     delay: 'md:mt-12'
@@ -15,7 +15,7 @@ const KITS = [
   {
     id: 'lovely-kit',
     name: 'Lovely Kit',
-    price: 35.00,
+    price: 40.00,
     description: 'Un toque de sofisticación y delicadeza en cada detalle. Perfecto para momentos memorables.',
     image: lovelyKit,
     delay: ''
@@ -23,7 +23,7 @@ const KITS = [
   {
     id: 'full-paint-kit',
     name: 'Full Paint Kit',
-    price: 75.00,
+    price: 45.00,
     description: 'La experiencia completa: arte, curaduría y degustación en un solo paquete inigualable.',
     image: fullPaintKit,
     delay: 'md:mt-12'
@@ -62,7 +62,7 @@ export default function AvilaKits() {
               
               <div className="text-center">
                 <h3 className="text-3xl font-serif text-primary mb-2">{kit.name}</h3>
-                <p className="text-accent font-bold mb-6 text-lg tracking-tight">${kit.price.toFixed(2)}</p>
+                <p className="text-accent font-bold mb-6 text-lg tracking-tight">{kit.price.toFixed(2)}€</p>
                 
                 <button 
                   onClick={() => addToCart(kit)}
