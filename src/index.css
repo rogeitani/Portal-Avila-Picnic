@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@config "../tailwind.config.js";
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Base Styles */
+@layer base {
+  body {
+    @apply bg-bg-cream text-primary font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+/* Selection color */
+::selection {
+  background-color: #E5C7C0;
+  color: #2D4032;
+}
