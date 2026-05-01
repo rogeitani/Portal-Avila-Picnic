@@ -66,3 +66,12 @@ La arquitectura de información actual es una landing page de una sola página (
 *   **Detalles de Servicios**: Implementado `PicnicModal` para mostrar el inventario detallado de cada tipo de picnic (Mesas, alfombras, flores, etc.).
 *   **Sección de Colores**: Nuevo componente `ColorPalette` que permite visualizar las opciones de personalización (Azules, Rosados, Beige, etc.) con scroll horizontal.
 *   **Publicación**: Primera versión desplegada con éxito en Vercel.
+
+### [2026-05-01] - Upgrade: Asistente de Reserva Interactivo (Booking Wizard)
+*   **Booking Wizard**: Sustitución de la sección estática por un flujo de 3 pasos.
+    *   Paso 1: Selector de invitados ilimitado y calendario opcional.
+    *   Paso 2: Selector de tipo de picnic con detalles dinámicos y **Pantone Color Picker**.
+    *   Navegación: Galería de fotos filtrada por color con navegación por flechas (`<` `>`).
+    *   Paso 3: Formulario "Lienzo en Blanco" y generación de solicitud estructurada para WhatsApp.
+*   **SEO/GEO**: Implementación de microdatos JSON-LD dinámicos que se actualizan según la configuración del usuario en el wizard.
+*   **Aesthetics**: Animaciones de entrada premium y transiciones suaves entre pasos.

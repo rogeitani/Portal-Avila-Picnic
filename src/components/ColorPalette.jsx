@@ -29,14 +29,14 @@ export default function ColorPalette() {
 
         <div className="flex flex-nowrap overflow-x-auto pb-12 gap-8 snap-x no-scrollbar">
           {palettes.map((palette, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="flex-shrink-0 w-[300px] md:w-[400px] snap-center group cursor-pointer"
             >
               <div className="relative aspect-[16/9] overflow-hidden rounded-[30px] mb-6 shadow-sm group-hover:shadow-xl transition-all duration-700">
-                <img 
-                  src={palette.image} 
-                  alt={palette.name} 
+                <img
+                  src={palette.image}
+                  alt={palette.name}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
@@ -53,7 +53,7 @@ export default function ColorPalette() {
           <p className="text-[10px] uppercase tracking-[0.4em] text-primary/30 flex items-center">
             <span className="mr-4">Desliza para explorar</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="animate-bounce">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
+              <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </p>
         </div>

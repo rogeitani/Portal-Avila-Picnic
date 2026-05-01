@@ -1,7 +1,7 @@
 import { CartProvider } from './context/CartContext'
 import Header from './components/Header'
 import Hero from './components/Hero'
-import HowItWorks from './components/HowItWorks'
+import BookingWizard from './components/BookingWizard'
 import Services from './components/Services'
 import ColorPalette from './components/ColorPalette'
 import AvilaKits from './components/AvilaKits'
@@ -18,7 +18,7 @@ function App() {
         
         <main>
           <Hero />
-          <HowItWorks />
+          <BookingWizard />
           <Services />
           <ColorPalette />
           <AvilaKits />
