@@ -1,37 +1,65 @@
+import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
+import { db, INVENTORY_PATH } from '../firebase';
+import { doc, onSnapshot } from 'firebase/firestore';
+
 import lovelyKit from '../assets/AVILA_KITS/LOVELY_KIT/Lovely_Kit_Avila_Picnic_1.png';
 import paintKit from '../assets/AVILA_KITS/PAINT_KIT/Paint_Kit_Avila_Picnic_1.png';
 import fullPaintKit from '../assets/AVILA_KITS/FULL_PAINT_KIT/Full_Paint_Kit_Avila_Picnic_1.png';
 
-const KITS = [
-  {
-    id: 'paint-kit',
-    name: 'Paint Kit',
-    price: 35.00,
-    description: 'El lienzo perfecto para tu creatividad. Incluye caballete, pinturas y todos los esenciales.',
-    image: paintKit,
-    delay: 'md:mt-12'
-  },
-  {
-    id: 'lovely-kit',
-    name: 'Lovely Kit',
-    price: 40.00,
-    description: 'Un toque de sofisticación y delicadeza en cada detalle. Perfecto para momentos memorables.',
-    image: lovelyKit,
-    delay: ''
-  },
-  {
-    id: 'full-paint-kit',
-    name: 'Full Paint Kit',
-    price: 45.00,
-    description: 'La experiencia completa: arte, curaduría y degustación en un solo paquete inigualable.',
-    image: fullPaintKit,
-    delay: 'md:mt-12'
-  }
-];
+// Fallback descriptions for kits coming from database
+const KIT_DESCRIPTIONS = {
+  'PAINT KIT': 'El lienzo perfecto para tu creatividad. Incluye caballete, pinturas y todos los esenciales.',
+  'LOVELY KIT': 'Un toque de sofisticación y delicadeza en cada detalle. Perfecto para momentos memorables.',
+  'FULL PAINT KIT': 'La experiencia completa: arte, curaduría y degustación en un solo paquete inigualable.'
+};
+
+const getImageForKit = (name) => {
+  const upperName = name.toUpperCase();
+  if (upperName.includes('FULL PAINT')) return fullPaintKit;
+  if (upperName.includes('PAINT')) return paintKit;
+  if (upperName.includes('LOVELY')) return lovelyKit;
+  return paintKit; // Default
+};
 
 export default function AvilaKits() {
   const { addToCart } = useCart();
+  const [kits, setKits] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, INVENTORY_PATH), (docSnap) => {
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        const items = data.items || [];
+        
+        // Filter and Map as per instructions
+        const filteredKits = items
+          .filter(item => item.name.startsWith('KIT: ') && item.quantity > 0)
+          .map((item, index) => {
+            const cleanName = item.name.replace('KIT: ', '');
+            return {
+              id: item.id || `kit-${index}`,
+              originalName: item.name, // Keep for requests
+              name: cleanName,
+              price: item.price || 0,
+              description: KIT_DESCRIPTIONS[cleanName.toUpperCase()] || 'Colección exclusiva de Ávila Picnic.',
+              image: getImageForKit(cleanName),
+              delay: index % 3 === 0 || index % 3 === 2 ? 'md:mt-12' : ''
+            };
+          });
+        
+        setKits(filteredKits);
+      }
+      setLoading(false);
+    });
+
+    return () => unsub();
+  }, []);
+
+  if (loading) return (
+    <div className="py-32 text-center text-primary/40 uppercase tracking-widest text-xs">Cargando colección...</div>
+  );
 
   return (
     <section id="avila-kits" className="w-full bg-white py-32 px-6">
@@ -45,7 +73,7 @@ export default function AvilaKits() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
-          {KITS.map((kit) => (
+          {kits.map((kit) => (
             <div key={kit.id} className={`group ${kit.delay}`}>
               <div className="relative aspect-[4/5] overflow-hidden rounded-[40px] shadow-sm mb-8 transition-all duration-700 group-hover:shadow-2xl group-hover:-translate-y-2">
                 <img 
@@ -76,5 +104,5 @@ export default function AvilaKits() {
         </div>
       </div>
     </section>
-  )
+  );
 }
